@@ -1,0 +1,96 @@
+/* Estilo del cuerpo */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #000000;
+    background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20221004/pngtree-green-natural-leaves-watercolor-background-image_1466803.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-container i {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #000000;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    padding: 0.8rem 0.8rem 0.8rem 35px;
+    background-image: linear-gradient(to right, #b7ffd9, #bbffd9, #beffd9, #c2ffda, #c5ffda, #c5ffd9, #c5ffd8, #c5ffd7, #c2ffd5, #befed2, #bbfed0, #b7fdcd);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+}
+
+button {
+    width: 70%;
+    padding: 0.8rem;
+    background-image: linear-gradient(to right, #65d69b, #7adea6, #8ee6b1, #a0edbd, #b2f5c9, #b0f2c6, #aff0c3, #adedc0, #98e0ad, #83d39a, #6dc688, #57b975);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #6afc7b;
+}
+
+.register-link {
+    margin-top: 1rem;
+    display: block;
+    color: #008f24;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+p {
+    color: #000000;
+}

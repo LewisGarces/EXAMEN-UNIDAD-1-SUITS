@@ -1,0 +1,65 @@
+/* Estilo del cuerpo */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #fffdfd;
+    background-image: url('https://img.freepik.com/fotos-premium/estampa-arte-cafeterias-espacio-escribir_1037884-1203.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.2rem;
+}
+
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 80%;
+    padding: 0.8rem 0.8rem 0.8rem 35px;
+    background-image: linear-gradient(to right top, #ff9748, #feae2c, #f2c900, #dae400, #b2ff00);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+button {
+    width: 70%;
+    padding: 0.8rem;
+    background-image: linear-gradient(to right top, #ffffff, #eaf9ff, #b4fbff, #64ffff, #00ffe8);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #6afc7b;
+}
+
+
+p {
+    color: #ffffff;
+}
+
+h2 {
+    color: #ffffff;
+}
