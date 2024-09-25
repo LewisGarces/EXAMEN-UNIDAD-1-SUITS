@@ -1,30 +1,5 @@
 <?php
-require_once "./app/config/dependencias.php";
-
-session_start(); // Iniciar sesión
-
-$message = ""; // Para mostrar mensajes al usuario
-
-// Verificar si se ha enviado el formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Validar credenciales contra los datos almacenados en la sesión
-    if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
-        if ($email === $_SESSION['email'] && $password === $_SESSION['password']) {
-            // Guardar datos en la sesión
-            $_SESSION['nombre'] = $_SESSION['nombre']; // Nombre del usuario
-            $_SESSION['apellido'] = $_SESSION['apellido']; // Apellido del usuario
-            header("Location: vistalogin.php");
-            exit();
-        } else {
-            $message = "Credenciales incorrectas. Inténtalo de nuevo.";
-        }
-    } else {
-        $message = "No hay usuarios registrados.";
-    }
-}
+require_once "./app/controller/login.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -37,10 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
-        <?php if ($message): ?>
-            <p style="color:red;"><?= $message ?></p>
-        <?php endif; ?>
-        <form action="" method="POST">
+        <form action="" method="POST" id="loginForm">
             <div class="input-group">
                 <i class="fas fa-envelope"></i>
                 <input type="text" id="email" name="email" placeholder="Email" required>
@@ -52,6 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Iniciar Sesión</button>
         </form>
         <p>¿Ya tienes una cuenta?<a href="index3.php" class="register-link">Crear cuenta</a></p>
-    </div>
+        </div>
+
+    <script src="./public/js/main.js"></script>
 </body>
 </html>
