@@ -14,7 +14,6 @@ body {
     margin: 0;
 }
 
-
 .input-group {
     position: relative;
     margin-bottom: 1.2rem;
@@ -40,7 +39,6 @@ input[type="password"] {
 }
 
 button {
-    width: 70%;
     padding: 0.8rem;
     background-image: linear-gradient(to right top, #ffffff, #eaf9ff, #b4fbff, #64ffff, #00ffe8);
     color: rgb(0, 0, 0);
@@ -51,10 +49,18 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #6afc7b;
+/* Estilos específicos para los botones de modificar y eliminar */
+button[name='delete_product'] {
+    background-color: #e74c3c; /* Rojo para eliminar */
 }
 
+button[name='edit_product'] {
+    background-color: #3498db; /* Azul para modificar */
+}
+
+button:hover {
+    opacity: 0.8; /* Efecto hover */
+}
 
 p {
     color: #ffffff;
@@ -62,4 +68,22 @@ p {
 
 h2 {
     color: #ffffff;
+}
+
+/* Estilo para el listado de productos */
+ul {
+    list-style-type: none; /* Sin viñetas en la lista */
+    padding: 0; /* Sin padding por defecto */
+}
+
+li {
+    padding: 10px; /* Espaciado interno en cada elemento de la lista */
+    border-bottom: 1px solid #ccc; /* Línea divisoria entre productos */
+    display: flex; /* Usar flexbox para alinear elementos dentro del li */
+    justify-content: space-between; /* Espacio entre el texto y los botones */
+}
+
+/* Alineación de los botones a la derecha */
+li div {
+    display: flex; /* Usar flexbox para alinear los botones */
 }

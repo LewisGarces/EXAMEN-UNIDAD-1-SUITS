@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             // Respuesta exitosa
             $response['success'] = true;
-            $response['message'] = "Datos de acceso correcto.";
+            $response['message'] = "Datos de acceso correcto, Redirigiendo al CRUD CAFETERIA.";
             echo json_encode($response);
             exit();
         } else {

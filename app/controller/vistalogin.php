@@ -1,7 +1,6 @@
 <?php
 // Incluir dependencias necesarias
 require_once "./app/config/dependencias.php";
-
 session_start(); // Iniciar sesión
 
 // Redirigir a login si no hay sesión activa
@@ -15,29 +14,54 @@ if (!isset($_SESSION['productos'])) {
     $_SESSION['productos'] = [];
 }
 
-// Manejar el envío del formulario para agregar un producto
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_product'])) {
-    $producto = trim($_POST['producto']); // Captura el nombre del producto
-    $precio = trim($_POST['precio']); // Captura el precio del producto
+// Manejar las solicitudes AJAX
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $respuesta = ['estado' => 'error', 'mensaje' => 'Acción no válida.'];
 
-    // Validar que los campos no estén vacíos y que el precio sea numérico
-    if (!empty($producto) && !empty($precio) && is_numeric($precio)) {
-        // Agregar el producto a la sesión
-        $_SESSION['productos'][] = [
-            'nombre' => $producto,
-            'precio' => $precio
-        ];
-    } else {
-        $message = "Por favor, completa todos los campos correctamente.";
-    }
-}
+    if (isset($_POST['accion'])) {
+        switch ($_POST['accion']) {
+            case 'agregar_producto':
+                $producto = trim($_POST['producto']);
+                $precio = trim($_POST['precio']);
+                
+                // Validar el nombre del producto
+                if (preg_match('/^[a-zA-Z\s]+$/', $producto) && preg_match('/^\d+(\.\d{1,2})?$/', $precio)) {
+                    $_SESSION['productos'][] = ['nombre' => $producto, 'precio' => $precio];
+                    $respuesta = ['estado' => 'éxito', 'mensaje' => 'Producto agregado exitosamente.'];
+                } else {
+                    $respuesta['mensaje'] = "Por favor, asegúrate de que el nombre del producto contenga solo letras y el precio solo números.";
+                }
+                break;
 
-// Manejar la eliminación de un producto
-if (isset($_POST['delete_product'])) {
-    $index = $_POST['product_index']; // Obtener el índice del producto a eliminar
-    if (isset($_SESSION['productos'][$index])) {
-        unset($_SESSION['productos'][$index]); // Eliminar el producto del array
-        $_SESSION['productos'] = array_values($_SESSION['productos']); // Reindexar el array
+            case 'eliminar_producto':
+                $indice = $_POST['indice_producto'];
+                if (isset($_SESSION['productos'][$indice])) {
+                    unset($_SESSION['productos'][$indice]);
+                    $_SESSION['productos'] = array_values($_SESSION['productos']);
+                    $respuesta = ['estado' => 'éxito', 'mensaje' => 'Producto eliminado exitosamente.'];
+                } else {
+                    $respuesta['mensaje'] = "Producto no encontrado.";
+                }
+                break;
+
+            case 'actualizar_producto':
+                $indice = $_POST['indice_producto'];
+                $producto = trim($_POST['producto']);
+                $precio = trim($_POST['precio']);
+                
+                // Validar el nombre del producto
+                if (preg_match('/^[a-zA-Z\s]+$/', $producto) && preg_match('/^\d+(\.\d{1,2})?$/', $precio)) {
+                    $_SESSION['productos'][$indice]['nombre'] = $producto;
+                    $_SESSION['productos'][$indice]['precio'] = $precio;
+                    $respuesta = ['estado' => 'éxito', 'mensaje' => 'Producto actualizado exitosamente.'];
+                } else {
+                    $respuesta['mensaje'] = "Por favor, asegúrate de que el nombre del producto contenga solo letras y el precio solo números.";
+                }
+                break;
+        }
     }
+
+    // Enviar respuesta como JSON
+    echo json_encode($respuesta);
+    exit();
 }
-?>
